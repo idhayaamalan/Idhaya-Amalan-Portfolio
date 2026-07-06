@@ -5,15 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Idhaya Amalan - Portfolio</title>
     <meta name="description" content="Professional portfolio of Idhaya Amalan showcasing skills, projects, and experience">
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Smooth page load transition — prevents flash of unstyled content */
+        /* ===== PRELOADER ===== */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .preloader-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: preloaderPulse 1.5s ease-in-out infinite;
+        }
+        .preloader-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            margin-top: 24px;
+            overflow: hidden;
+        }
+        .preloader-bar::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #a78bfa);
+            border-radius: 10px;
+            animation: preloaderSlide 1.2s ease-in-out infinite;
+        }
+        @keyframes preloaderPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(0.98); }
+        }
+        @keyframes preloaderSlide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+
+        /* ===== BODY & PAGE REVEAL ===== */
         body {
             opacity: 0;
             transform: scale(0.98) translateY(10px);
             filter: blur(8px);
+            cursor: none;
         }
         body.loaded {
             opacity: 1;
@@ -21,13 +77,258 @@
             filter: blur(0px);
             transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
         }
-        /* Universal smooth transition for all interactive elements */
+
+        /* ===== DARK MODE ===== */
+        body.dark-mode {
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(99, 102, 241, 0.2);
+            --card-bg: #1e1e32;
+            --navbar-bg: rgba(15, 15, 26, 0.95);
+        }
+        body.dark-mode { background: var(--bg-primary, #0f0f1a); color: var(--text-primary, #e2e8f0); }
+        body.dark-mode .navbar { background: var(--navbar-bg) !important; }
+        body.dark-mode .section-title { color: var(--text-primary, #e2e8f0); }
+        body.dark-mode .about-text p,
+        body.dark-mode .timeline-content,
+        body.dark-mode .education-card,
+        body.dark-mode .skill-category,
+        body.dark-mode .project-card,
+        body.dark-mode .contact-form,
+        body.dark-mode .contact-info,
+        body.dark-mode .cert-achievement-grid { 
+            background: var(--card-bg, #1e1e32) !important; 
+            color: var(--text-primary, #e2e8f0) !important;
+            border-color: var(--border-color) !important;
+        }
+        body.dark-mode .footer { background: var(--bg-secondary, #1a1a2e) !important; color: var(--text-secondary) !important; }
+        body.dark-mode input, body.dark-mode textarea {
+            background: #252540 !important;
+            color: #e2e8f0 !important;
+            border-color: rgba(99,102,241,0.3) !important;
+        }
+        body.dark-mode .nav-link { color: var(--text-primary, #e2e8f0) !important; }
+        body.dark-mode .nav-logo h3 { color: var(--text-primary, #e2e8f0) !important; }
+        body.dark-mode .hero { background: var(--bg-primary, #0f0f1a) !important; }
+        body.dark-mode .hero-description, body.dark-mode .hero-location { color: var(--text-secondary) !important; }
+        body.dark-mode .stats-section { background: var(--bg-secondary, #1a1a2e) !important; }
+        body.dark-mode .stat-number { color: #a78bfa !important; }
+
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            color: #6366f1;
+            transition: all 0.3s ease;
+            margin-left: 12px;
+        }
+        .dark-mode-toggle:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: #6366f1;
+            transform: rotate(30deg);
+        }
+
+        /* ===== CUSTOM CURSOR ===== */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: #6366f1;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transition: transform 0.1s ease;
+        }
+        .cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 2px solid rgba(99, 102, 241, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99997;
+            transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        }
+        .cursor-ring.hover {
+            width: 50px;
+            height: 50px;
+            border-color: #a78bfa;
+        }
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-ring { display: none; }
+            body { cursor: auto; }
+        }
+
+        /* ===== TYPING ANIMATION ===== */
+        .typing-wrapper {
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.6em;
+        }
+        .typing-text {
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background: #6366f1;
+            margin-left: 4px;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* ===== PARTICLE CANVAS ===== */
+        .hero { position: relative; overflow: hidden; }
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-container { position: relative; z-index: 1; }
+        .scroll-indicator { position: relative; z-index: 1; }
+
+        /* ===== STATS COUNTER SECTION ===== */
+        .stats-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f1ff 100%);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 24px;
+        }
+        .stat-icon {
+            font-size: 2rem;
+            color: #6366f1;
+            margin-bottom: 12px;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e1b4b;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+
+        /* ===== SKILL PROGRESS BARS ===== */
+        .skill-progress-section {
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .skill-progress-item {
+            margin-bottom: 20px;
+        }
+        .skill-progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .skill-progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .skill-progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(99, 102, 241, 0.6);
+        }
+
+        /* ===== UNIVERSAL TRANSITIONS ===== */
         a, button, .btn, .nav-link, .card, .timeline-item, .education-card, .skill-item, .project-card {
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
     </style>
 </head>
 <body style="opacity:0; transform:scale(0.98) translateY(10px); filter:blur(8px);">
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-name">IA</div>
+        <div class="preloader-bar"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -57,6 +358,9 @@
                     <a href="#contact" class="nav-link">Contact</a>
                 </li>
             </ul>
+            <button class="dark-mode-toggle" id="dark-mode-toggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="nav-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -67,13 +371,18 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <canvas id="particle-canvas"></canvas>
         <div class="hero-container">
             <div class="hero-content">
                 <p class="hero-greeting">Hi, I'm</p>
                 <h1 class="hero-title">
                     <span class="highlight">Idhaya Amalan</span>
                 </h1>
-                <p class="hero-subtitle"><strong>Technology Enthusiast</strong> | Cloud Solutions | AWS | Sales Intern</p>
+                <p class="hero-subtitle">
+                    <span class="typing-wrapper">
+                        <span class="typing-text" id="typing-text"></span><span class="typing-cursor"></span>
+                    </span>
+                </p>
                 <p class="hero-description">
                     Helping businesses adopt cloud technologies while continuously learning emerging technologies and delivering innovative solutions.
                 </p>
@@ -86,7 +395,7 @@
             </div>
             <div class="hero-image">
                 <div class="image-container">
-                    <img src="images/profile.png" alt="Idhaya Amalan - Technology Enthusiast" class="profile-photo">
+                    <img src="profile.png" alt="Idhaya Amalan - Technology Enthusiast" class="profile-photo">
                 </div>
             </div>
         </div>
@@ -140,6 +449,32 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter Section -->
+    <section class="stats-section" id="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+                <div class="stat-number" data-target="2">0</div>
+                <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+                <div class="stat-number" data-target="2">0</div>
+                <div class="stat-label">Certifications</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                <div class="stat-number" data-target="1">0</div>
+                <div class="stat-label">Internships</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-star"></i></div>
+                <div class="stat-number" data-target="7.2" data-decimal="true">0</div>
+                <div class="stat-label">CGPA</div>
             </div>
         </div>
     </section>
@@ -264,6 +599,41 @@
                         <span class="skill-item">MS Office</span>
                         <span class="skill-item">Google Workspace</span>
                         <span class="skill-item">Zoho CRM</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Skill Progress Bars -->
+            <div class="skill-progress-section" id="skill-progress">
+                <div class="skill-progress-item">
+                    <div class="skill-progress-header">
+                        <span>Interpersonal</span><span>90%</span>
+                    </div>
+                    <div class="skill-progress-bar">
+                        <div class="skill-progress-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-progress-item">
+                    <div class="skill-progress-header">
+                        <span>Organization</span><span>85%</span>
+                    </div>
+                    <div class="skill-progress-bar">
+                        <div class="skill-progress-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-progress-item">
+                    <div class="skill-progress-header">
+                        <span>Technical Awareness</span><span>75%</span>
+                    </div>
+                    <div class="skill-progress-bar">
+                        <div class="skill-progress-fill" data-width="75"></div>
+                    </div>
+                </div>
+                <div class="skill-progress-item">
+                    <div class="skill-progress-header">
+                        <span>Tools</span><span>80%</span>
+                    </div>
+                    <div class="skill-progress-bar">
+                        <div class="skill-progress-fill" data-width="80"></div>
                     </div>
                 </div>
             </div>
@@ -414,18 +784,11 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script>
-        // Catchy blur-to-focus page reveal
-        window.addEventListener('load', function() {
-            requestAnimationFrame(function() {
-                document.body.style.transition = 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease';
-                document.body.style.opacity = '1';
-                document.body.style.transform = 'scale(1) translateY(0)';
-                document.body.style.filter = 'blur(0px)';
-                document.body.classList.add('loaded');
-            });
-        });
-    </script>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
 </body>
 </html>
