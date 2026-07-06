@@ -23,11 +23,13 @@
             justify-content: center;
             z-index: 99999;
             transition: opacity 0.6s ease, visibility 0.6s ease;
+            
         }
         .preloader.hidden {
             opacity: 0;
             visibility: hidden;
         }
+        
         .preloader-name {
             font-family: 'Inter', sans-serif;
             font-size: 2.5rem;
@@ -66,15 +68,12 @@
 
         /* ===== BODY & PAGE REVEAL ===== */
         body {
-            opacity: 0;
-            transform: scale(0.98) translateY(10px);
-            filter: blur(8px);
-            cursor: none;
+            opacity: 1;
+            margin: 0;
+            padding: 0;
         }
         body.loaded {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            filter: blur(0px);
+            cursor: none;
             transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
         }
 
@@ -85,61 +84,124 @@
             --text-primary: #f0f6fc;
             --text-secondary: #c9d1d9;
             --text-muted: #8b949e;
-            --border-color: rgba(139, 92, 246, 0.3);
-            --card-bg: #1c2128;
-            --navbar-bg: rgba(13, 17, 23, 0.95);
             --accent: #a78bfa;
-            --accent-glow: rgba(167, 139, 250, 0.15);
+            --card-bg: #1c2128;
         }
-        body.dark-mode { background: var(--bg-primary) !important; color: var(--text-primary) !important; }
-        body.dark-mode .navbar { background: var(--navbar-bg) !important; border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important; }
-        body.dark-mode .nav-link { color: var(--text-secondary) !important; }
-        body.dark-mode .nav-link:hover, body.dark-mode .nav-link.active { color: var(--accent) !important; }
+
+        /* Base */
+        body.dark-mode { background: #0d1117 !important; color: #f0f6fc !important; }
+        body.dark-mode section { background: #0d1117 !important; }
+        body.dark-mode .container { background: transparent !important; }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 { color: #f0f6fc !important; }
+        body.dark-mode p, body.dark-mode li, body.dark-mode span, body.dark-mode div { color: #c9d1d9 !important; }
+        body.dark-mode strong { color: #f0f6fc !important; }
+        body.dark-mode .highlight { color: #a78bfa !important; }
+
+        /* Navbar */
+        body.dark-mode .navbar { background: rgba(13, 17, 23, 0.8) !important; border-bottom: 1px solid rgba(139, 92, 246, 0.15) !important; }
+        body.dark-mode .nav-link { color: #c9d1d9 !important; }
+        body.dark-mode .nav-link:hover, body.dark-mode .nav-link.active { color: #a78bfa !important; }
         body.dark-mode .nav-logo h3 { color: #f0f6fc !important; }
-        body.dark-mode .section-title { color: #f0f6fc !important; }
-        body.dark-mode h3, body.dark-mode h4 { color: #f0f6fc !important; }
-        body.dark-mode p, body.dark-mode li, body.dark-mode span { color: var(--text-secondary) !important; }
-        body.dark-mode .hero { background: var(--bg-primary) !important; }
+        body.dark-mode .bar { background: #c9d1d9 !important; }
+
+        /* Hero */
         body.dark-mode .hero-title, body.dark-mode .hero-greeting { color: #f0f6fc !important; }
-        body.dark-mode .hero-subtitle { color: var(--text-secondary) !important; }
-        body.dark-mode .hero-description, body.dark-mode .hero-location { color: var(--text-muted) !important; }
-        body.dark-mode .about, body.dark-mode .experience, body.dark-mode .education,
-        body.dark-mode .skills, body.dark-mode .projects, body.dark-mode .certifications,
-        body.dark-mode .contact { background: var(--bg-primary) !important; }
-        body.dark-mode .about-text p,
+        body.dark-mode .hero-subtitle, body.dark-mode .typing-text { color: #c9d1d9 !important; }
+        body.dark-mode .hero-description, body.dark-mode .hero-location { color: #8b949e !important; }
+        body.dark-mode .typing-cursor { color: #a78bfa !important; }
+
+        /* Cards (all types) */
         body.dark-mode .timeline-content,
         body.dark-mode .education-card,
         body.dark-mode .skill-category,
         body.dark-mode .project-card,
+        body.dark-mode .stat-card,
         body.dark-mode .contact-form,
         body.dark-mode .contact-info,
         body.dark-mode .cert-achievement-grid,
-        body.dark-mode .stat-card { 
-            background: var(--card-bg) !important; 
-            color: var(--text-primary) !important;
+        body.dark-mode .certifications-list,
+        body.dark-mode .achievements-list {
+            background: #1c2128 !important;
+            color: #f0f6fc !important;
             border: 1px solid rgba(139, 92, 246, 0.2) !important;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
         }
-        body.dark-mode .timeline-content h3, body.dark-mode .education-card h3,
-        body.dark-mode .project-card h3 { color: var(--accent) !important; }
-        body.dark-mode .timeline-content h4 { color: var(--text-secondary) !important; }
-        body.dark-mode .timeline-date { color: var(--text-muted) !important; }
-        body.dark-mode .timeline-marker { background: var(--accent) !important; box-shadow: 0 0 12px rgba(167, 139, 250, 0.4) !important; }
-        body.dark-mode .footer { background: var(--bg-secondary) !important; color: var(--text-secondary) !important; border-top: 1px solid rgba(139, 92, 246, 0.15) !important; }
-        body.dark-mode input, body.dark-mode textarea {
-            background: #1c2128 !important;
-            color: #f0f6fc !important;
-            border: 1px solid rgba(139, 92, 246, 0.3) !important;
+        body.dark-mode .timeline-content:hover, body.dark-mode .education-card:hover,
+        body.dark-mode .project-card:hover, body.dark-mode .stat-card:hover {
+            border-color: rgba(139, 92, 246, 0.5) !important;
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.15) !important;
         }
-        body.dark-mode input::placeholder, body.dark-mode textarea::placeholder { color: #8b949e !important; }
-        body.dark-mode input:focus, body.dark-mode textarea:focus { border-color: var(--accent) !important; box-shadow: 0 0 0 3px var(--accent-glow) !important; }
-        body.dark-mode .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; }
-        body.dark-mode .btn-secondary { border-color: var(--accent) !important; color: var(--accent) !important; }
-        body.dark-mode .stats-section { background: var(--bg-secondary) !important; }
-        body.dark-mode .stat-number { color: var(--accent) !important; }
-        body.dark-mode .stat-label { color: var(--text-secondary) !important; }
+
+        /* Card headings — purple accent */
+        body.dark-mode .timeline-content h3, body.dark-mode .education-card h3,
+        body.dark-mode .project-card h3, body.dark-mode .certifications-list h3,
+        body.dark-mode .achievements-list h3 { color: #a78bfa !important; }
+        body.dark-mode .timeline-content h4, body.dark-mode .education-card h4 { color: #c9d1d9 !important; }
+
+        /* Card text */
+        body.dark-mode .timeline-date, body.dark-mode .education-year { color: #8b949e !important; }
+        body.dark-mode .education-school { color: #c9d1d9 !important; }
+        body.dark-mode .timeline-content li { color: #c9d1d9 !important; }
+        body.dark-mode .timeline-content li::before { color: #a78bfa !important; }
+        body.dark-mode .timeline-marker { background: #a78bfa !important; box-shadow: 0 0 12px rgba(167, 139, 250, 0.4) !important; }
+        body.dark-mode .timeline::before { background: rgba(139, 92, 246, 0.3) !important; }
+        body.dark-mode .education-icon { color: #a78bfa !important; }
+
+        /* Icons — purple */
+        body.dark-mode .certifications-list h3 i, body.dark-mode .achievements-list h3 i,
+        body.dark-mode .cert-list li i, body.dark-mode .stat-icon i,
+        body.dark-mode .contact-method i, body.dark-mode .scroll-indicator a { color: #a78bfa !important; }
+
+        /* Certifications & Achievements */
+        body.dark-mode .cert-list li, body.dark-mode .achievement-list li { color: #c9d1d9 !important; }
+
+        /* Stats */
+        body.dark-mode .stats-section { background: #161b22 !important; }
+        body.dark-mode .stat-number { color: #a78bfa !important; }
+        body.dark-mode .stat-label { color: #c9d1d9 !important; }
+
+        /* Skills */
+        body.dark-mode .skill-item { background: #252540 !important; color: #c9d1d9 !important; border: 1px solid rgba(139, 92, 246, 0.2) !important; }
+        body.dark-mode .skill-item:hover { background: rgba(139, 92, 246, 0.15) !important; color: #a78bfa !important; }
         body.dark-mode .skill-progress-bar { background: #2d333b !important; }
         body.dark-mode .skill-progress-fill { background: linear-gradient(90deg, #6366f1, #a78bfa) !important; }
+        body.dark-mode .skill-progress-label { color: #c9d1d9 !important; }
+        body.dark-mode .skill-progress-percent { color: #a78bfa !important; }
+
+        /* Projects */
+        body.dark-mode .project-card p { color: #c9d1d9 !important; }
+        body.dark-mode .project-card a { color: #a78bfa !important; }
+        body.dark-mode .project-tech span { color: #c9d1d9 !important; background: #252540 !important; }
+
+        /* Contact */
+        body.dark-mode .contact-method h4 { color: #f0f6fc !important; }
+        body.dark-mode .contact-method p, body.dark-mode .contact-method div { color: #c9d1d9 !important; }
+        body.dark-mode .social-link, body.dark-mode .social-links a {
+            color: #c9d1d9 !important; background: #252540 !important; border: 1px solid rgba(139, 92, 246, 0.2) !important;
+        }
+        body.dark-mode .social-link:hover, body.dark-mode .social-links a:hover {
+            color: #a78bfa !important; background: rgba(139, 92, 246, 0.15) !important; border-color: #a78bfa !important;
+        }
+        body.dark-mode .contact-form label, body.dark-mode .form-group label { color: #c9d1d9 !important; }
+        body.dark-mode input, body.dark-mode textarea {
+            background: #0d1117 !important; color: #f0f6fc !important; border: 1px solid rgba(139, 92, 246, 0.3) !important;
+        }
+        body.dark-mode input::placeholder, body.dark-mode textarea::placeholder { color: #8b949e !important; }
+        body.dark-mode input:focus, body.dark-mode textarea:focus { border-color: #a78bfa !important; box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15) !important; }
+
+        /* About floating elements */
+        body.dark-mode .element { background: #1c2128 !important; color: #a78bfa !important; border: 1px solid rgba(139, 92, 246, 0.2) !important; }
+        body.dark-mode .center-icon { background: #1c2128 !important; color: #a78bfa !important; }
+
+        /* Buttons */
+        body.dark-mode .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; }
+        body.dark-mode .btn-secondary { border-color: #a78bfa !important; color: #a78bfa !important; }
+        body.dark-mode .btn-tertiary { color: #a78bfa !important; border-color: rgba(139, 92, 246, 0.3) !important; }
+
+        /* Footer */
+        body.dark-mode .footer { background: #161b22 !important; color: #c9d1d9 !important; border-top: 1px solid rgba(139, 92, 246, 0.15) !important; }
+
+        /* Back to top */
         body.dark-mode .back-to-top { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; }
 
         .dark-mode-toggle {
@@ -171,8 +233,9 @@
             background: #6366f1;
             border-radius: 50%;
             pointer-events: none;
-            z-index: 99998;
+            z-index: 2147483647;
             transition: transform 0.1s ease;
+            mix-blend-mode: difference;
         }
         .cursor-ring {
             position: fixed;
@@ -181,7 +244,7 @@
             border: 2px solid rgba(99, 102, 241, 0.5);
             border-radius: 50%;
             pointer-events: none;
-            z-index: 99997;
+            z-index: 2147483646;
             transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
         }
         .cursor-ring.hover {
@@ -341,17 +404,212 @@
         a, button, .btn, .nav-link, .card, .timeline-item, .education-card, .skill-item, .project-card {
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        /* ===== NAVBAR SCROLL EFFECT ===== */
+        /* ===== NAVBAR ===== */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        body.dark-mode .navbar {
+            background: rgba(13, 17, 23, 0.95) !important;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important;
         }
 
+        
+
+        
+
+
+
+
+        /* ===== FIX: Card borders and overlap ===== */
+        .education-card, .skill-category, .project-card, 
+        .timeline-content, .stat-card,
+        .certifications-list, .achievements-list {
+            position: relative;
+            z-index: 1;
+            background: #ffffff !important;
+            border: 1px solid rgba(99, 102, 241, 0.15) !important;
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.06) !important;
+            overflow: visible !important;
+        }
+        .project-card {
+            overflow: visible !important;
+        }
+
+        /* Ensure sections don't clip card borders/shadows */
+        .education-grid, .skills-grid, .projects-grid, 
+        .cert-achievement-grid, .stats-grid, .timeline {
+            overflow: visible !important;
+        }
+
+        
+        .certifications-list, .achievements-list {
+            background: #ffffff !important;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.15) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+        }
+        body.dark-mode .certifications-list, body.dark-mode .achievements-list {
+            background: #1c2128 !important;
+            border: 1px solid rgba(139, 92, 246, 0.25) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+        body.dark-mode .cert-achievement-grid {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* ===== FIX: Contact "Let's connect" box ===== */
+        .contact-info {
+            background: #ffffff !important;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.15) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+        }
+        .contact-form {
+            background: #ffffff !important;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.15) !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+        }
+        body.dark-mode .contact-info, body.dark-mode .contact-form {
+            background: #1c2128 !important;
+            border: 1px solid rgba(139, 92, 246, 0.25) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+        }
+
+
+        /* ===== FIX: Cursor always visible on all pages ===== */
+        section, .container, .hero, .about, .experience, .education,
+        .skills, .projects, .certifications, .contact, .footer,
+        .stats-section {
+            z-index: auto !important;
+        }
+
+
+        
+        /* ===== FIX: Dark mode contact details (email, phone, location) ===== */
+        body.dark-mode .contact-method {
+            color: #f0f6fc !important;
+        }
+        body.dark-mode .contact-method i {
+            color: #a78bfa !important;
+            font-size: 1.3rem;
+        }
+        body.dark-mode .contact-method h4 {
+            color: #f0f6fc !important;
+        }
+        body.dark-mode .contact-method p,
+        body.dark-mode .contact-method a,
+        body.dark-mode .contact-method span,
+        body.dark-mode .contact-method div {
+            color: #e2e8f0 !important;
+        }
+        body.dark-mode .contact-methods {
+            color: #e2e8f0 !important;
+        }
+        body.dark-mode .contact-info h3 {
+            color: #f0f6fc !important;
+        }
+        body.dark-mode .contact-info p {
+            color: #c9d1d9 !important;
+        }
+
+        /* ===== FIX: Contact method dark mode (ultra-specific) ===== */
+        body.dark-mode .contact-method,
+        body.dark-mode .contact-content .contact-method,
+        body.dark-mode .contact-info .contact-methods .contact-method {
+            background: #252540 !important;
+            color: #f0f6fc !important;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+        }
+        body.dark-mode .contact-method i,
+        body.dark-mode .contact-content .contact-method i,
+        body.dark-mode .contact-info .contact-methods .contact-method i {
+            color: #a78bfa !important;
+        }
+        body.dark-mode .contact-method h4,
+        body.dark-mode .contact-content .contact-method h4,
+        body.dark-mode .contact-info .contact-methods .contact-method h4 {
+            color: #f0f6fc !important;
+        }
+        body.dark-mode .contact-method p,
+        body.dark-mode .contact-method a,
+        body.dark-mode .contact-content .contact-method p,
+        body.dark-mode .contact-info .contact-methods .contact-method p {
+            color: #e2e8f0 !important;
+        }
+
+        /* ===== FIX: Cursor always visible ===== */
+        .cursor-dot, .cursor-ring {
+            position: fixed !important;
+            z-index: 2147483647 !important;
+            pointer-events: none !important;
+        }
+
+
+        /* ===== FIX: Certifications & Achievements dark mode (ultra-specific) ===== */
+        body.dark-mode .certifications,
+        body.dark-mode section.certifications {
+            background: #0d1117 !important;
+        }
+        body.dark-mode .certifications-list,
+        body.dark-mode .cert-achievement-grid .certifications-list,
+        body.dark-mode .achievements-list,
+        body.dark-mode .cert-achievement-grid .achievements-list {
+            background: #1c2128 !important;
+            color: #f0f6fc !important;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+        }
+        body.dark-mode .certifications-list h3,
+        body.dark-mode .cert-achievement-grid .certifications-list h3,
+        body.dark-mode .achievements-list h3,
+        body.dark-mode .cert-achievement-grid .achievements-list h3 {
+            color: #f0f6fc !important;
+        }
+        body.dark-mode .certifications-list h3 i,
+        body.dark-mode .achievements-list h3 i,
+        body.dark-mode .cert-achievement-grid .certifications-list h3 i,
+        body.dark-mode .cert-achievement-grid .achievements-list h3 i {
+            color: #a78bfa !important;
+        }
+        body.dark-mode .cert-list li,
+        body.dark-mode .certifications-list .cert-list li,
+        body.dark-mode .cert-achievement-grid .certifications-list .cert-list li {
+            background: #252540 !important;
+            color: #e2e8f0 !important;
+            border: 1px solid rgba(139, 92, 246, 0.15) !important;
+        }
+        body.dark-mode .cert-list li i,
+        body.dark-mode .certifications-list .cert-list li i {
+            color: #a78bfa !important;
+        }
+        body.dark-mode .achievement-list li,
+        body.dark-mode .achievements-list .achievement-list li,
+        body.dark-mode .cert-achievement-grid .achievements-list .achievement-list li {
+            background: #252540 !important;
+            color: #e2e8f0 !important;
+            border: 1px solid rgba(139, 92, 246, 0.15) !important;
+        }
+
+    <noscript>
+        <style>
+            .preloader { display: none !important; }
+            body { opacity: 1 !important; }
+        </style>
+    </noscript>
 </head>
-<body style="opacity:0; transform:scale(0.98) translateY(10px); filter:blur(8px);">
+<body>
 
     <!-- Preloader -->
     <div class="preloader" id="preloader">
@@ -360,8 +618,6 @@
     </div>
 
     <!-- Custom Cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -823,14 +1079,11 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Custom cursor — placed at end to stay above all content -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
     <script src="js/script.js"></script>
-    <script>
-        // Fallback: if script.js has any error, still show the page after 3 seconds
-        setTimeout(function() {
-            document.body.style.cssText = 'opacity:1; transform:none; filter:none;';
-            var preloader = document.querySelector('.preloader');
-            if (preloader) preloader.classList.add('hidden');
-        }, 3000);
-    </script>
+
 </body>
 </html>
