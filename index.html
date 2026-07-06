@@ -11,13 +11,15 @@
     <style>
         /* Smooth page load transition — prevents flash of unstyled content */
         body {
-            visibility: hidden;
             opacity: 0;
+            transform: scale(0.98) translateY(10px);
+            filter: blur(8px);
         }
         body.loaded {
-            visibility: visible;
             opacity: 1;
-            transition: opacity 0.6s ease-in-out;
+            transform: scale(1) translateY(0);
+            filter: blur(0px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
         }
         /* Universal smooth transition for all interactive elements */
         a, button, .btn, .nav-link, .card, .timeline-item, .education-card, .skill-item, .project-card {
@@ -25,7 +27,7 @@
         }
     </style>
 </head>
-<body style="opacity:0;">
+<body style="opacity:0; transform:scale(0.98) translateY(10px); filter:blur(8px);">
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -414,11 +416,15 @@
 
     <script src="js/script.js"></script>
     <script>
-        // Smooth page reveal after all resources are loaded
+        // Catchy blur-to-focus page reveal
         window.addEventListener('load', function() {
-            document.body.style.transition = 'opacity 0.6s ease-in-out';
-            document.body.style.opacity = '1';
-            document.body.classList.add('loaded');
+            requestAnimationFrame(function() {
+                document.body.style.transition = 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease';
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'scale(1) translateY(0)';
+                document.body.style.filter = 'blur(0px)';
+                document.body.classList.add('loaded');
+            });
         });
     </script>
 </body>
