@@ -373,13 +373,14 @@ function initParallaxEffects() {
 
 // Intersection Observer for General Animations
 function initIntersectionObserver() {
-    const elementsToAnimate = $$('.about-content, .contact-info, .contact-form, .section-title');
+    const elementsToAnimate = $$('.about-content, .contact-info, .contact-form, .section-title, .timeline-item, .education-card, .project-card');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.style.transform = 'translateY(0) scale(1)';
+                entry.target.style.filter = 'blur(0px)';
                 observer.unobserve(entry.target);
             }
         });
@@ -394,14 +395,16 @@ function initIntersectionObserver() {
         const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
         
         if (isInViewport) {
-            // Already visible — don't hide it, no animation needed
+            // Already visible — show immediately
             element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
+            element.style.transform = 'translateY(0) scale(1)';
+            element.style.filter = 'blur(0px)';
         } else {
-            // Below the fold — animate when scrolled into view
+            // Below the fold — catchy blur + scale reveal on scroll
             element.style.opacity = '0';
-            element.style.transform = 'translateY(40px)';
-            element.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            element.style.transform = 'translateY(30px) scale(0.96)';
+            element.style.filter = 'blur(4px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease';
             observer.observe(element);
         }
     });
