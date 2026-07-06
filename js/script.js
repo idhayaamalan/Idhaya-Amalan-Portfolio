@@ -385,21 +385,40 @@ function initNavbarScroll() {
     const navbar = $('#navbar');
     if (!navbar) return;
 
+    let lastScroll = 0;
+
     const handleScroll = throttle(() => {
         const scrollY = window.scrollY;
         const isDark = document.body.classList.contains('dark-mode');
 
         if (scrollY > 50) {
-            navbar.style.background = isDark ? 'rgba(15, 15, 26, 0.98)' : 'rgba(255, 255, 255, 0.98)';
+            navbar.style.background = isDark ? 'rgba(15, 15, 26, 0.95)' : 'rgba(255, 255, 255, 0.98)';
             navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.borderBottom = '1px solid rgba(99, 102, 241, 0.2)';
-            navbar.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+            navbar.style.borderBottom = isDark ? '1px solid rgba(139, 92, 246, 0.3)' : '1px solid rgba(99, 102, 241, 0.2)';
+            navbar.style.boxShadow = isDark ? '0 8px 32px rgba(0, 0, 0, 0.4)' : '0 8px 32px rgba(0, 0, 0, 0.1)';
+            navbar.style.padding = '8px 0';
         } else {
-            navbar.style.background = isDark ? 'rgba(15, 15, 26, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+            navbar.style.background = isDark ? 'rgba(15, 15, 26, 0.8)' : 'rgba(255, 255, 255, 0.95)';
             navbar.style.backdropFilter = 'blur(10px)';
-            navbar.style.borderBottom = '1px solid rgba(0, 0, 0, 0.1)';
+            navbar.style.borderBottom = isDark ? '1px solid rgba(139, 92, 246, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)';
             navbar.style.boxShadow = 'none';
+            navbar.style.padding = '12px 0';
         }
+
+        // Hide/show navbar on scroll direction
+        if (scrollY > 400) {
+            if (scrollY > lastScroll) {
+                // Scrolling down — hide navbar
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up — show navbar
+                navbar.style.transform = 'translateY(0)';
+            }
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+
+        lastScroll = scrollY;
     }, 10);
 
     window.addEventListener('scroll', handleScroll);
