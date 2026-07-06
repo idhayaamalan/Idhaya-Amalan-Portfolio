@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idhaya Amalan - Portfolio</title>
+    <meta name="description" content="Professional portfolio of Idhaya Amalan showcasing skills, projects, and experience">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Smooth page load transition — prevents flash of unstyled content */
+        body {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+        /* Universal smooth transition for all interactive elements */
+        *, *::before, *::after {
+            transition: all 0.3s ease;
+        }
+        a, button, .btn, .nav-link, .card, .timeline-item, .education-card, .skill-item, .project-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h3>Idhaya Amalan</h3>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">Experience</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#education" class="nav-link">Education</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#certifications" class="nav-link">Achievements</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hi, I'm</p>
+                <h1 class="hero-title">
+                    <span class="highlight">Idhaya Amalan</span>
+                </h1>
+                <p class="hero-subtitle"><strong>Technology Enthusiast</strong> | Cloud Solutions | AWS | Sales Intern</p>
+                <p class="hero-description">
+                    Helping businesses adopt cloud technologies while continuously learning emerging technologies and delivering innovative solutions.
+                </p>
+                <p class="hero-location">📍 Chennai, Tamil Nadu, India</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="resume.pdf" class="btn btn-secondary" download="Idhaya-Amalan-Resume.pdf">Download Resume</a>
+                    <a href="#contact" class="btn btn-tertiary">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <img src="images/profile.png" alt="Idhaya Amalan - Technology Enthusiast" class="profile-photo">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <a href="#about">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a Computer Science Engineering graduate with a CGPA of 7.2, seeking roles that involve 
+                        communication, analytical thinking, and teamwork. Currently working as a Sales Intern at 
+                        Teckonnect, I promote cloud and cybersecurity solutions including Microsoft 365, AWS, Azure, 
+                        and Acronis through cold calling and professional messaging.
+                    </p>
+                    <p>
+                        As a <strong>Technology Enthusiast</strong>, I'm committed to delivering organized, meaningful, 
+                        and professional contributions in a dynamic work environment. I use Zoho CRM to manage leads, 
+                        customer interactions, and follow-ups while continuously expanding my technical expertise in 
+                        cloud fundamentals and modern technologies.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="tech-illustration">
+                        <div class="floating-elements">
+                            <div class="element element-1">
+                                <i class="fab fa-aws"></i>
+                            </div>
+                            <div class="element element-2">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="element element-3">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="element element-4">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="element element-5">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="center-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Sales Intern</h3>
+                        <h4>Teckonnect</h4>
+                        <p class="timeline-date">February 2026 – Present</p>
+                        <ul>
+                            <li>Promoting cloud and cybersecurity solutions including Microsoft 365, AWS, Azure, and Acronis</li>
+                            <li>Cold calling and professional messaging for lead generation</li>
+                            <li>Using Zoho CRM to manage leads, customer interactions, and follow-ups</li>
+                            <li>Supporting IT and cloud solution discussions with clients</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Intern</h3>
+                        <h4>Octanet Pvt Ltd</h4>
+                        <p class="timeline-date">1 Month</p>
+                        <ul>
+                            <li>Worked with cross-functional teams to improve responsiveness and user experience</li>
+                            <li>Enhanced client-facing web platform usability</li>
+                            <li>Contributed to UI improvements and collaborated with developers and designers</li>
+                            <li>Delivered responsive and user-friendly web pages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>B.E. Computer Science Engineering</h3>
+                    <p class="education-school">Loyola-ICAM College of Engineering and Technology, Chennai</p>
+                    <p class="education-year">2022 – 2026 | CGPA: 7.2</p>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>Higher Secondary (HSC)</h3>
+                    <p class="education-school">Velumanikam Mont Hr Sec School, Ramanathapuram</p>
+                    <p class="education-year">2022 | 89%</p>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3>SSLC</h3>
+                    <p class="education-school">Don Bosco Matric School</p>
+                    <p class="education-year">2020 | 88%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Interpersonal</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Communication</span>
+                        <span class="skill-item">Collaboration</span>
+                        <span class="skill-item">Teamwork</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Organization</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Event Coordination</span>
+                        <span class="skill-item">Time Management</span>
+                        <span class="skill-item">Adaptability</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Technical Awareness</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">HTML</span>
+                        <span class="skill-item">CSS</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">Cloud Fundamentals</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Tools</h3>
+                    <div class="skill-items">
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">MS Office</span>
+                        <span class="skill-item">Google Workspace</span>
+                        <span class="skill-item">Zoho CRM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Traveloop – Travel Companion App</h3>
+                        <p>A travel companion app that helps users plan trips, book taxis/hotels, view maps, and manage payments—all in one place. It gives location-based recommendations and allows users to create their own travel itinerary.</p>
+                        <div class="project-tech">
+                            <span>Travel Planning</span>
+                            <span>Location Services</span>
+                            <span>Payment Integration</span>
+                            <span>Mobile App</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/idhayaamalan?tab=repositories" class="btn btn-small btn-outline" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Healthcare Data Access System</h3>
+                        <p>A secure healthcare platform enabling hospitals to access patient medical records during emergencies using role-based authentication and cloud technologies.</p>
+                        <div class="project-tech">
+                            <span>Healthcare</span>
+                            <span>Security</span>
+                            <span>Cloud Technologies</span>
+                            <span>Authentication</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/idhayaamalan?tab=repositories" class="btn btn-small btn-outline" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications & Achievements Section -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            
+            <div class="cert-achievement-grid">
+                <div class="certifications-list">
+                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                    <ul class="cert-list">
+                        <li><i class="fas fa-comments"></i> Communication Skills – Coursera</li>
+                        <li><i class="fab fa-linkedin"></i> Project Management Foundations – LinkedIn Learning</li>
+                    </ul>
+                </div>
+                
+                <div class="achievements-list">
+                    <h3><i class="fas fa-trophy"></i> Achievements & Activities</h3>
+                    <ul class="achievement-list">
+                        <li><span class="trophy">🏆</span> Top 10 position at VIT Pitchathon (70+ teams)</li>
+                        <li><span class="trophy">📋</span> Event Coordinator: Organized college events</li>
+                        <li><span class="trophy">🎓</span> Class Committee Member (2022–2025)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's connect and collaborate!</h3>
+                    <p>I'm always open to discussing new opportunities, interesting projects, and innovative ideas.</p>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>amalanpubh@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91-9843143460</p>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Chennai, Tamil Nadu, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/idhayaamalan?tab=repositories" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/idhaya-amalan-20809825b/" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Reason for connecting or just say hi!"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Idhaya Amalan. All rights reserved. | Built with ❤️</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
