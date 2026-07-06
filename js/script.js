@@ -329,17 +329,6 @@ function initSkillsAnimation() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
                 
-                // Special animation for skill items
-                if (entry.target.classList.contains('skill-category')) {
-                    const items = entry.target.querySelectorAll('.skill-item');
-                    items.forEach((item, index) => {
-                        setTimeout(() => {
-                            item.style.animation = `slideInFromRight 0.6s ease forwards`;
-                            item.style.animationDelay = `${index * 100}ms`;
-                        }, 200);
-                    });
-                }
-                
                 observer.unobserve(entry.target);
             }
         });
