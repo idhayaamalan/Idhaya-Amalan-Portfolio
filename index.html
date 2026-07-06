@@ -80,17 +80,32 @@
 
         /* ===== DARK MODE ===== */
         body.dark-mode {
-            --bg-primary: #0f0f1a;
-            --bg-secondary: #1a1a2e;
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --border-color: rgba(99, 102, 241, 0.2);
-            --card-bg: #1e1e32;
-            --navbar-bg: rgba(15, 15, 26, 0.95);
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #f0f6fc;
+            --text-secondary: #c9d1d9;
+            --text-muted: #8b949e;
+            --border-color: rgba(139, 92, 246, 0.3);
+            --card-bg: #1c2128;
+            --navbar-bg: rgba(13, 17, 23, 0.95);
+            --accent: #a78bfa;
+            --accent-glow: rgba(167, 139, 250, 0.15);
         }
-        body.dark-mode { background: var(--bg-primary, #0f0f1a); color: var(--text-primary, #e2e8f0); }
-        body.dark-mode .navbar { background: var(--navbar-bg) !important; }
-        body.dark-mode .section-title { color: var(--text-primary, #e2e8f0); }
+        body.dark-mode { background: var(--bg-primary) !important; color: var(--text-primary) !important; }
+        body.dark-mode .navbar { background: var(--navbar-bg) !important; border-bottom: 1px solid rgba(139, 92, 246, 0.2) !important; }
+        body.dark-mode .nav-link { color: var(--text-secondary) !important; }
+        body.dark-mode .nav-link:hover, body.dark-mode .nav-link.active { color: var(--accent) !important; }
+        body.dark-mode .nav-logo h3 { color: #f0f6fc !important; }
+        body.dark-mode .section-title { color: #f0f6fc !important; }
+        body.dark-mode h3, body.dark-mode h4 { color: #f0f6fc !important; }
+        body.dark-mode p, body.dark-mode li, body.dark-mode span { color: var(--text-secondary) !important; }
+        body.dark-mode .hero { background: var(--bg-primary) !important; }
+        body.dark-mode .hero-title, body.dark-mode .hero-greeting { color: #f0f6fc !important; }
+        body.dark-mode .hero-subtitle { color: var(--text-secondary) !important; }
+        body.dark-mode .hero-description, body.dark-mode .hero-location { color: var(--text-muted) !important; }
+        body.dark-mode .about, body.dark-mode .experience, body.dark-mode .education,
+        body.dark-mode .skills, body.dark-mode .projects, body.dark-mode .certifications,
+        body.dark-mode .contact { background: var(--bg-primary) !important; }
         body.dark-mode .about-text p,
         body.dark-mode .timeline-content,
         body.dark-mode .education-card,
@@ -98,23 +113,34 @@
         body.dark-mode .project-card,
         body.dark-mode .contact-form,
         body.dark-mode .contact-info,
-        body.dark-mode .cert-achievement-grid { 
-            background: var(--card-bg, #1e1e32) !important; 
-            color: var(--text-primary, #e2e8f0) !important;
-            border-color: var(--border-color) !important;
+        body.dark-mode .cert-achievement-grid,
+        body.dark-mode .stat-card { 
+            background: var(--card-bg) !important; 
+            color: var(--text-primary) !important;
+            border: 1px solid rgba(139, 92, 246, 0.2) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
         }
-        body.dark-mode .footer { background: var(--bg-secondary, #1a1a2e) !important; color: var(--text-secondary) !important; }
+        body.dark-mode .timeline-content h3, body.dark-mode .education-card h3,
+        body.dark-mode .project-card h3 { color: var(--accent) !important; }
+        body.dark-mode .timeline-content h4 { color: var(--text-secondary) !important; }
+        body.dark-mode .timeline-date { color: var(--text-muted) !important; }
+        body.dark-mode .timeline-marker { background: var(--accent) !important; box-shadow: 0 0 12px rgba(167, 139, 250, 0.4) !important; }
+        body.dark-mode .footer { background: var(--bg-secondary) !important; color: var(--text-secondary) !important; border-top: 1px solid rgba(139, 92, 246, 0.15) !important; }
         body.dark-mode input, body.dark-mode textarea {
-            background: #252540 !important;
-            color: #e2e8f0 !important;
-            border-color: rgba(99,102,241,0.3) !important;
+            background: #1c2128 !important;
+            color: #f0f6fc !important;
+            border: 1px solid rgba(139, 92, 246, 0.3) !important;
         }
-        body.dark-mode .nav-link { color: var(--text-primary, #e2e8f0) !important; }
-        body.dark-mode .nav-logo h3 { color: var(--text-primary, #e2e8f0) !important; }
-        body.dark-mode .hero { background: var(--bg-primary, #0f0f1a) !important; }
-        body.dark-mode .hero-description, body.dark-mode .hero-location { color: var(--text-secondary) !important; }
-        body.dark-mode .stats-section { background: var(--bg-secondary, #1a1a2e) !important; }
-        body.dark-mode .stat-number { color: #a78bfa !important; }
+        body.dark-mode input::placeholder, body.dark-mode textarea::placeholder { color: #8b949e !important; }
+        body.dark-mode input:focus, body.dark-mode textarea:focus { border-color: var(--accent) !important; box-shadow: 0 0 0 3px var(--accent-glow) !important; }
+        body.dark-mode .btn-primary { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; }
+        body.dark-mode .btn-secondary { border-color: var(--accent) !important; color: var(--accent) !important; }
+        body.dark-mode .stats-section { background: var(--bg-secondary) !important; }
+        body.dark-mode .stat-number { color: var(--accent) !important; }
+        body.dark-mode .stat-label { color: var(--text-secondary) !important; }
+        body.dark-mode .skill-progress-bar { background: #2d333b !important; }
+        body.dark-mode .skill-progress-fill { background: linear-gradient(90deg, #6366f1, #a78bfa) !important; }
+        body.dark-mode .back-to-top { background: linear-gradient(135deg, #6366f1, #8b5cf6) !important; color: white !important; }
 
         .dark-mode-toggle {
             background: none;
@@ -315,7 +341,15 @@
         a, button, .btn, .nav-link, .card, .timeline-item, .education-card, .skill-item, .project-card {
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-    </style>
+        /* ===== NAVBAR SCROLL EFFECT ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
 </head>
 <body style="opacity:0; transform:scale(0.98) translateY(10px); filter:blur(8px);">
 
@@ -458,17 +492,17 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-                <div class="stat-number" data-target="2">0</div>
+                <div class="stat-number" data-target="5" data-suffix="+">0</div>
                 <div class="stat-label">Projects</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-certificate"></i></div>
-                <div class="stat-number" data-target="2">0</div>
+                <div class="stat-number" data-target="5" data-suffix="+">0</div>
                 <div class="stat-label">Certifications</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
-                <div class="stat-number" data-target="1">0</div>
+                <div class="stat-number" data-target="3" data-suffix="+">0</div>
                 <div class="stat-label">Internships</div>
             </div>
             <div class="stat-card">
