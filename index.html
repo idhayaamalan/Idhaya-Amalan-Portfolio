@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    body {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        }
+    body.loaded {
+        opacity: 1;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -397,5 +406,8 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+        document.body.classList.add('loaded');
+    </script>
 </body>
 </html>
