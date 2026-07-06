@@ -40,21 +40,15 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===== PRELOADER =====
 function initPreloader() {
     const preloader = $('#preloader');
-    if (!preloader) return;
+    if (!preloader) {
+        initTypingAnimation();
+        return;
+    }
 
-    window.addEventListener('load', function() {
-        setTimeout(() => {
-            preloader.classList.add('hidden');
-            // Reveal body
-            document.body.style.transition = 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease';
-            document.body.style.opacity = '1';
-            document.body.style.transform = 'scale(1) translateY(0)';
-            document.body.style.filter = 'blur(0px)';
-            document.body.classList.add('loaded');
-            // Start typing animation after reveal
-            setTimeout(() => initTypingAnimation(), 800);
-        }, 1500);
-    });
+    // Remove preloader immediately — no delay
+    preloader.classList.add('hidden');
+    document.body.classList.add('loaded');
+    initTypingAnimation();
 }
 
 // Initialize All Features
@@ -67,7 +61,6 @@ function initializeAll() {
     initContactForm();
     initIntersectionObserver();
     initParallaxEffects();
-    initSkillsAnimation();
     initParticles();
     initDarkMode();
     initBackToTop();
@@ -384,44 +377,6 @@ function initMobileMenu() {
 function initNavbarScroll() {
     const navbar = $('#navbar');
     if (!navbar) return;
-
-    let lastScroll = 0;
-
-    const handleScroll = throttle(() => {
-        const scrollY = window.scrollY;
-        const isDark = document.body.classList.contains('dark-mode');
-
-        if (scrollY > 50) {
-            navbar.style.background = isDark ? 'rgba(15, 15, 26, 0.95)' : 'rgba(255, 255, 255, 0.98)';
-            navbar.style.backdropFilter = 'blur(20px)';
-            navbar.style.borderBottom = isDark ? '1px solid rgba(139, 92, 246, 0.3)' : '1px solid rgba(99, 102, 241, 0.2)';
-            navbar.style.boxShadow = isDark ? '0 8px 32px rgba(0, 0, 0, 0.4)' : '0 8px 32px rgba(0, 0, 0, 0.1)';
-            navbar.style.padding = '8px 0';
-        } else {
-            navbar.style.background = isDark ? 'rgba(15, 15, 26, 0.8)' : 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-            navbar.style.borderBottom = isDark ? '1px solid rgba(139, 92, 246, 0.1)' : '1px solid rgba(0, 0, 0, 0.1)';
-            navbar.style.boxShadow = 'none';
-            navbar.style.padding = '12px 0';
-        }
-
-        // Hide/show navbar on scroll direction
-        if (scrollY > 400) {
-            if (scrollY > lastScroll) {
-                // Scrolling down — hide navbar
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                // Scrolling up — show navbar
-                navbar.style.transform = 'translateY(0)';
-            }
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = scrollY;
-    }, 10);
-
-    window.addEventListener('scroll', handleScroll);
 }
 
 // ===== ACTIVE NAV =====
@@ -460,7 +415,9 @@ function initSmoothScrolling() {
             e.preventDefault();
             const target = $(this.getAttribute('href'));
             if (target) {
-                const offsetTop = target.offsetTop - 80;
+                const navbar = $('#navbar');
+                const isSidebar = navbar && navbar.classList.contains('sidebar-mode');
+                const offsetTop = target.offsetTop - (isSidebar ? 20 : 80);
                 window.scrollTo({ top: offsetTop, behavior: 'smooth' });
             }
         });
